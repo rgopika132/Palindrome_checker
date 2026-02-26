@@ -13,6 +13,8 @@
  * - Console output
  */
 
+import java.util.Stack;
+
   public class PalindromeCheckerApp {
   /**
    * UseCase2PalindromeCheckerApp
@@ -71,28 +73,49 @@
 
 
 
+  /**
+   * UseCase5PalindromeCheckerApp
+   *
+   * Objective:
+   * Check whether a string is a palindrome
+   * using a Stack (LIFO principle).
+   *
+   * Concepts Used:
+   * - Class
+   * - Main Method
+   * - Stack Data Structure
+   * - Push Operation
+   * - Pop Operation
+   * - Reversal Logic
+   * - Console Output
+   */
+
+
+
+
+
     public static void main(String[] args) {
 
       // Original string
-      String original = "radar";
+      String original = "madam";
 
-      // Convert String to character array
-      char[] characters = original.toCharArray();
+      // Create Stack of Characters
+      Stack<Character> stack = new Stack<>();
 
-      // Two-pointer variables
-      int start = 0;
-      int end = characters.length - 1;
+      // Push each character into the stack
+      for (int i = 0; i < original.length(); i++) {
+        stack.push(original.charAt(i));
+      }
 
       boolean isPalindrome = true;
 
-      // Compare characters using two-pointer approach
-      while (start < end) {
-        if (characters[start] != characters[end]) {
+      // Pop characters and compare with original
+      for (int i = 0; i < original.length(); i++) {
+        char poppedChar = stack.pop();
+        if (original.charAt(i) != poppedChar) {
           isPalindrome = false;
           break;
         }
-        start++;
-        end--;
       }
 
       // Display result
@@ -104,7 +127,6 @@
 
       System.out.println("Program executed successfully.");
     }
+
+
   }
-
-
-
