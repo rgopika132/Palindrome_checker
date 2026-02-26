@@ -52,29 +52,59 @@
 
 
 
+  /**
+   * UseCase4PalindromeCheckerApp
+   *
+   * Objective:
+   * Check whether a string is a palindrome
+   * using a character array and two-pointer technique.
+   *
+   * Concepts Used:
+   * - Class
+   * - Main Method
+   * - char[] (Character Array)
+   * - Array Indexing
+   * - Two-Pointer Technique
+   * - Time Complexity Awareness
+   * - Console Output
+   */
+
+
+
     public static void main(String[] args) {
 
       // Original string
-      String original = "level";
+      String original = "radar";
 
-      // Variable to store reversed string
-      String reversed = "";
+      // Convert String to character array
+      char[] characters = original.toCharArray();
 
-      // Reverse string using for loop
-      for (int i = original.length() - 1; i >= 0; i--) {
-        reversed = reversed + original.charAt(i);
+      // Two-pointer variables
+      int start = 0;
+      int end = characters.length - 1;
+
+      boolean isPalindrome = true;
+
+      // Compare characters using two-pointer approach
+      while (start < end) {
+        if (characters[start] != characters[end]) {
+          isPalindrome = false;
+          break;
+        }
+        start++;
+        end--;
       }
 
-      // Compare original and reversed using equals()
-      if (original.equals(reversed)) {
+      // Display result
+      if (isPalindrome) {
         System.out.println("The string \"" + original + "\" is a Palindrome.");
       } else {
         System.out.println("The string \"" + original + "\" is NOT a Palindrome.");
       }
 
-      // Display reversed string (for understanding)
-      System.out.println("Reversed string: " + reversed);
+      System.out.println("Program executed successfully.");
     }
   }
+
 
 
