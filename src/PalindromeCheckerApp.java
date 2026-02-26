@@ -14,105 +14,122 @@
  */
 
 import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
 
   public class PalindromeCheckerApp {
-  /**
-   * UseCase2PalindromeCheckerApp
-   *
-   * Objective:
-   * Check whether a hardcoded string is a palindrome
-   * and print the result.
-   *
-   * Concepts Used:
-   * - Class
-   * - Main Method
-   * - Static Keyword
-   * - String & String Literal
-   * - if-else Conditional Statement
-   * - Console Output
-   */
+    /**
+     * UseCase2PalindromeCheckerApp
+     *
+     * Objective:
+     * Check whether a hardcoded string is a palindrome
+     * and print the result.
+     *
+     * Concepts Used:
+     * - Class
+     * - Main Method
+     * - Static Keyword
+     * - String & String Literal
+     * - if-else Conditional Statement
+     * - Console Output
+     */
 
 
-
-  /**
-   * UseCase3PalindromeCheckerApp
-   *
-   * Objective:
-   * Check whether a string is a palindrome
-   * by reversing it using a for loop.
-   *
-   * Concepts Used:
-   * - Class
-   * - Main Method
-   * - Static Keyword
-   * - String (Immutable)
-   * - for loop
-   * - String Concatenation (+)
-   * - equals() method
-   * - Console Output
-   */
-
+    /**
+     * UseCase3PalindromeCheckerApp
+     *
+     * Objective:
+     * Check whether a string is a palindrome
+     * by reversing it using a for loop.
+     *
+     * Concepts Used:
+     * - Class
+     * - Main Method
+     * - Static Keyword
+     * - String (Immutable)
+     * - for loop
+     * - String Concatenation (+)
+     * - equals() method
+     * - Console Output
+     */
 
 
-  /**
-   * UseCase4PalindromeCheckerApp
-   *
-   * Objective:
-   * Check whether a string is a palindrome
-   * using a character array and two-pointer technique.
-   *
-   * Concepts Used:
-   * - Class
-   * - Main Method
-   * - char[] (Character Array)
-   * - Array Indexing
-   * - Two-Pointer Technique
-   * - Time Complexity Awareness
-   * - Console Output
-   */
+    /**
+     * UseCase4PalindromeCheckerApp
+     *
+     * Objective:
+     * Check whether a string is a palindrome
+     * using a character array and two-pointer technique.
+     *
+     * Concepts Used:
+     * - Class
+     * - Main Method
+     * - char[] (Character Array)
+     * - Array Indexing
+     * - Two-Pointer Technique
+     * - Time Complexity Awareness
+     * - Console Output
+     */
 
 
-
-  /**
-   * UseCase5PalindromeCheckerApp
-   *
-   * Objective:
-   * Check whether a string is a palindrome
-   * using a Stack (LIFO principle).
-   *
-   * Concepts Used:
-   * - Class
-   * - Main Method
-   * - Stack Data Structure
-   * - Push Operation
-   * - Pop Operation
-   * - Reversal Logic
-   * - Console Output
-   */
-
+    /**
+     * UseCase5PalindromeCheckerApp
+     *
+     * Objective:
+     * Check whether a string is a palindrome
+     * using a Stack (LIFO principle).
+     *
+     * Concepts Used:
+     * - Class
+     * - Main Method
+     * - Stack Data Structure
+     * - Push Operation
+     * - Pop Operation
+     * - Reversal Logic
+     * - Console Output
+     */
 
 
+    /**
+     * UseCase6PalindromeCheckerApp
+     * <p>
+     * Objective:
+     * Check whether a string is a palindrome
+     * using both Queue (FIFO) and Stack (LIFO).
+     * <p>
+     * Concepts Used:
+     * - Queue (FIFO)
+     * - Stack (LIFO)
+     * - Enqueue & Dequeue
+     * - Push & Pop
+     * - Logical Comparison
+     */
 
 
     public static void main(String[] args) {
 
       // Original string
-      String original = "madam";
+      String original = "level";
 
-      // Create Stack of Characters
+      // Create Stack and Queue
       Stack<Character> stack = new Stack<>();
+      Queue<Character> queue = new LinkedList<>();
 
-      // Push each character into the stack
+      // Insert characters into both Stack and Queue
       for (int i = 0; i < original.length(); i++) {
-        stack.push(original.charAt(i));
+        char ch = original.charAt(i);
+        stack.push(ch);      // LIFO
+        queue.add(ch);       // FIFO (enqueue)
       }
 
       boolean isPalindrome = true;
 
-      // Pop characters and compare with original
-      for (int i = 0; i < original.length(); i++) {
-        char poppedChar = stack.pop();
-        if (original.charAt(i) != poppedChar) {
+      // Compare dequeue (FIFO) and pop (LIFO)
+      while (!stack.isEmpty()) {
+        char fromStack = stack.pop();      // LIFO
+        char fromQueue = queue.remove();  // FIFO (dequeue)
+
+        if (fromStack != fromQueue) {
           isPalindrome = false;
           break;
         }
@@ -127,6 +144,4 @@ import java.util.Stack;
 
       System.out.println("Program executed successfully.");
     }
-
-
   }
