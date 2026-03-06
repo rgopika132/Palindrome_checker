@@ -13,148 +13,45 @@
  * - Console output
  */
 
-import java.util.Deque;
-import java.util.ArrayDeque;
-
-  public class PalindromeCheckerApp {
-    /**
-     * UseCase2PalindromeCheckerApp
-     *
-     * Objective:
-     * Check whether a hardcoded string is a palindrome
-     * and print the result.
-     *
-     * Concepts Used:
-     * - Class
-     * - Main Method
-     * - Static Keyword
-     * - String & String Literal
-     * - if-else Conditional Statement
-     * - Console Output
-     */
 
 
-    /**
-     * UseCase3PalindromeCheckerApp
-     *
-     * Objective:
-     * Check whether a string is a palindrome
-     * by reversing it using a for loop.
-     *
-     * Concepts Used:
-     * - Class
-     * - Main Method
-     * - Static Keyword
-     * - String (Immutable)
-     * - for loop
-     * - String Concatenation (+)
-     * - equals() method
-     * - Console Output
-     */
 
+    import java.util.Scanner;
 
-    /**
-     * UseCase4PalindromeCheckerApp
-     *
-     * Objective:
-     * Check whether a string is a palindrome
-     * using a character array and two-pointer technique.
-     *
-     * Concepts Used:
-     * - Class
-     * - Main Method
-     * - char[] (Character Array)
-     * - Array Indexing
-     * - Two-Pointer Technique
-     * - Time Complexity Awareness
-     * - Console Output
-     */
+    public class PalindromeCheckerApp {
 
+      // Recursive function to check palindrome
+      public static boolean isPalindrome(String str, int start, int end) {
 
-    /**
-     * UseCase5PalindromeCheckerApp
-     *
-     * Objective:
-     * Check whether a string is a palindrome
-     * using a Stack (LIFO principle).
-     *
-     * Concepts Used:
-     * - Class
-     * - Main Method
-     * - Stack Data Structure
-     * - Push Operation
-     * - Pop Operation
-     * - Reversal Logic
-     * - Console Output
-     */
+        // Base condition
+        if (start >= end) {
+          return true;
+        }
 
+        // Check characters
+        if (str.charAt(start) != str.charAt(end)) {
+          return false;
+        }
 
-    /**
-     * UseCase6PalindromeCheckerApp
-     * <p>
-     * Objective:
-     * Check whether a string is a palindrome
-     * using both Queue (FIFO) and Stack (LIFO).
-     * <p>
-     * Concepts Used:
-     * - Queue (FIFO)
-     * - Stack (LIFO)
-     * - Enqueue & Dequeue
-     * - Push & Pop
-     * - Logical Comparison
-     */
-
-
-    /**
-     * UseCase7PalindromeCheckerApp
-     *
-     * Objective:
-     * Check whether a string is a palindrome
-     * using Deque (Double Ended Queue).
-     *
-     * Concepts Used:
-     * - Deque Data Structure
-     * - Front and Rear Access
-     * - Optimized Comparison
-     * - Console Output
-     */
-
-
+        // Recursive call
+        return isPalindrome(str, start + 1, end - 1);
+      }
 
       public static void main(String[] args) {
 
-        // Original string
-        String original = "racecar";
+        Scanner scanner = new Scanner(System.in);
 
-        // Create Deque
-        Deque<Character> deque = new ArrayDeque<>();
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
 
-        // Insert characters into deque
-        for (int i = 0; i < original.length(); i++) {
-          deque.addLast(original.charAt(i));
-        }
+        boolean result = isPalindrome(input, 0, input.length() - 1);
 
-        boolean isPalindrome = true;
-
-        // Compare front and rear elements
-        while (deque.size() > 1) {
-
-          char front = deque.removeFirst();
-          char rear = deque.removeLast();
-
-          if (front != rear) {
-            isPalindrome = false;
-            break;
-          }
-        }
-
-        // Display result
-        if (isPalindrome) {
-          System.out.println("The string \"" + original + "\" is a Palindrome.");
+        if (result) {
+          System.out.println("The string is a Palindrome.");
         } else {
-          System.out.println("The string \"" + original + "\" is NOT a Palindrome.");
+          System.out.println("The string is NOT a Palindrome.");
         }
 
-        System.out.println("Program executed successfully.");
+        scanner.close();
       }
     }
