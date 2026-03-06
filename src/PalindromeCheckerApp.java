@@ -13,26 +13,104 @@
  * - Console output
  */
 
-  public class PalindromeCheckerApp {
-//Use Case 1: Application Entry &Welcome Message
-    // Application constants
 
-    static final String VERSION = "1.0";
+import java.util.Scanner;
 
-    /**
-     * Main method - Entry point of the Java application
-     * JVM invokes this method automatically.
-     */
-    public static void main(String[] args) {
+  class Node {
+    char data;
+    Node next;
 
-      // Display Welcome Message
-      System.out.println("=====================================");
-      System.out.println(" Welcome to Palindrome Checker" );
-
-      System.out.println("=====================================");
-      System.out.println("Application Name : Palindrome Checker");
-      System.out.println("Application Version : " + VERSION);
-      System.out.println("Application started successfully.");
-      System.out.println("Ready for palindrome validation...");
+    Node(char data) {
+      this.data = data;
+      this.next = null;
     }
   }
+
+  public class PalindromeCheckerApp {
+
+    // Create linked list from string
+    public static Node createList(String str) {
+      Node head = null, tail = null;
+
+      for (char ch : str.toCharArray()) {
+        Node newNode = new Node(ch);
+
+        if (head == null) {
+          head = newNode;
+          tail = newNode;
+        } else {
+          tail.next = newNode;
+          tail = newNode;
+        }
+      }
+      return head;
+    }
+
+    // Find middle using fast & slow pointer
+    public static Node findMiddle(Node head) {
+      Node slow = head;
+      Node fast = head;
+
+      while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+      }
+      return slow;
+    }
+
+    // Reverse linked list
+    public static Node reverse(Node head) {
+      Node prev = null;
+      Node current = head;
+
+      while (current != null) {
+        Node next = current.next;
+        current.next = prev;
+        prev = current;
+        current = next;
+      }
+
+      return prev;
+    }
+
+    // Check palindrome
+    public static boolean isPalindrome(Node head) {
+
+      if (head == null || head.next == null)
+        return true;
+
+      Node middle = findMiddle(head);
+
+      Node secondHalf = reverse(middle);
+
+      Node firstHalf = head;
+
+      while (secondHalf != null) {
+        if (firstHalf.data != secondHalf.data)
+          return false;
+
+        firstHalf = firstHalf.next;
+        secondHalf = secondHalf.next;
+      }
+
+      return true;
+    }
+
+    public static void main(String[] args) {
+
+      Scanner sc = new Scanner(System.in);
+
+      System.out.print("Enter a string: ");
+      String input = sc.nextLine();
+
+      Node head = createList(input);
+
+      if (isPalindrome(head))
+        System.out.println("The string is a Palindrome.");
+      else
+        System.out.println("The string is NOT a Palindrome.");
+
+      sc.close();
+    }
+  }
+
